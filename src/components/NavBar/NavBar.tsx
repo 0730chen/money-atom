@@ -1,15 +1,52 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import {Link} from "react-router-dom";
-
+import styled from "styled-components";
+const Nav  = styled.div`
+  border: 1px solid black;
+`;
+const Container = styled.div`
+height: 100%;
+width: 100%;
+display: flex;
+flex-direction: column;
+`;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid black;
+`;
+const Ul  =styled.ul`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  li{
+  width: 33.3333%;
+  text-align: center;
+  padding: 16px;
+  }
+`;
+const SwitchWarpper =  styled.div`
+    flex: 1;
+    overflow: auto;
+`;
 class NavBar extends React.Component {
-
     render() {
         return (
-            <div>
                 <Router>
-                    <div>
-                        <ul>
+                    <Container>
+                        <SwitchWarpper>
+                        <Switch>
+                            <Route exact path="/money" component={Home} />
+                            <Route path="/tag" component={Tag} exact />
+                            <Route path="/statistics" component={Topics} exact />
+                            <Redirect exact from="/"  to="/money"/>
+                            <Route  exact path="*"  component={NoMatch}/>
+                        </Switch>
+                        </SwitchWarpper>
+                        <Ul>
                             <li>
                                 <Link to="/money">记一笔</Link>
                             </li>
@@ -19,41 +56,33 @@ class NavBar extends React.Component {
                             <li>
                                 <Link to="/statistics">账目统计</Link>
                             </li>
-                        </ul>
-                        <Switch>
-                        <Route exact path="/money" component={Home} />
-                        <Route path="/tag" component={Tag} exact />
-                        <Route path="/statistics" component={Topics} exact />
-                        <Redirect exact from="/"  to="/money"/>
-                        <Route  exact path="*"  component={NoMatch}/>
-                        </Switch>
-                    </div>
+                        </Ul>
+                    </Container>
                 </Router>
-            </div>
         )
     }
 }
 const Home = () => (
-    <div>
+    <Wrapper>
         <h2>Home</h2>
-    </div>
+    </Wrapper>
 );
 
 const Tag = () => (
-    <div>
+    <Wrapper>
         <h2>About</h2>
-    </div>
+    </Wrapper>
 );
 
 const Topics = () => (
-    <div>
+    <Wrapper>
         <h2>Topics</h2>
-    </div>
+    </Wrapper>
 );
 const NoMatch = ()=>(
-    <div>
+    <Wrapper>
         当前页面不存在
-    </div>
+    </Wrapper>
 );
 
 
