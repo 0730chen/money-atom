@@ -2,34 +2,33 @@ import React from "react";
 import { BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-const Nav  = styled.div`
-  border: 1px solid black;
-`;
+import Home from "../../views/Home/Home";
+import Statistics from "../../views/Statistics/Statistics";
+import Tag from "../../views/Tag/Tag";
+import NotFound from "../../views/404/NotFound";
 const Container = styled.div`
 height: 100%;
 width: 100%;
 display: flex;
 flex-direction: column;
 `;
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border: 1px solid black;
-`;
 const Ul  =styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
+  background: #99CCCC;
   justify-content: center;
   li{
   width: 33.3333%;
   text-align: center;
   padding: 16px;
+  color: white;
   }
 `;
 const SwitchWarpper =  styled.div`
     flex: 1;
+    background: #FFCC99;;
+    color: black;
     overflow: auto;
 `;
 class NavBar extends React.Component {
@@ -41,9 +40,9 @@ class NavBar extends React.Component {
                         <Switch>
                             <Route exact path="/money" component={Home} />
                             <Route path="/tag" component={Tag} exact />
-                            <Route path="/statistics" component={Topics} exact />
+                            <Route path="/statistics" component={Statistics} exact />
                             <Redirect exact from="/"  to="/money"/>
-                            <Route  exact path="*"  component={NoMatch}/>
+                            <Route  exact path="*"  component={NotFound}/>
                         </Switch>
                         </SwitchWarpper>
                         <Ul>
@@ -62,28 +61,7 @@ class NavBar extends React.Component {
         )
     }
 }
-const Home = () => (
-    <Wrapper>
-        <h2>Home</h2>
-    </Wrapper>
-);
 
-const Tag = () => (
-    <Wrapper>
-        <h2>About</h2>
-    </Wrapper>
-);
-
-const Topics = () => (
-    <Wrapper>
-        <h2>Topics</h2>
-    </Wrapper>
-);
-const NoMatch = ()=>(
-    <Wrapper>
-        当前页面不存在
-    </Wrapper>
-);
 
 
 export default NavBar
