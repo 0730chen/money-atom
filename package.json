@@ -92,11 +92,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/helper-create-regexp-features-plugin": "^7.10.4",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.1",
+    "@types/webpack-env": "^1.15.2",
     "eslint-plugin-react": "^7.20.0",
     "node-sass": "npm:dart-sass@1.25.0",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "svg-sprite-loader": "^5.0.0",
+    "svgo-loader": "^2.2.1"
   },
   "pre-commit": [
     "lint"

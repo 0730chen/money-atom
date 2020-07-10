@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /// <reference types="react" />
 /// <reference types="react-dom" />
-
+/* eslint-enable */
 declare namespace NodeJS {
   interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test';
@@ -38,8 +38,9 @@ declare module '*.webp' {
     const src: string;
     export default src;
 }
-
+/* eslint-enable */
 declare module '*.svg' {
+  /* eslint-enable */
   import * as React from 'react';
 
   export const ReactComponent: React.FunctionComponent<React.SVGProps<

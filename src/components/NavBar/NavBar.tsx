@@ -6,6 +6,7 @@ import Home from "../../views/Home/Home";
 import Statistics from "../../views/Statistics/Statistics";
 import Tag from "../../views/Tag/Tag";
 import NotFound from "../../views/404/NotFound";
+import Icon from "../Icon/Icon";
 const Container = styled.div`
 height: 100%;
 width: 100%;
@@ -21,8 +22,12 @@ const Ul  =styled.ul`
   li{
   width: 33.3333%;
   text-align: center;
-  padding: 16px;
+  padding: 4px 0;
   color: white;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
   }
 `;
 const SwitchWarpper =  styled.div`
@@ -47,12 +52,15 @@ class NavBar extends React.Component {
                         </SwitchWarpper>
                         <Ul>
                             <li>
+                                <Icon name='money'/>
                                 <Link to="/money">记一笔</Link>
                             </li>
                             <li>
+                                <Icon name='tag'/>
                                 <Link to="/tag">标签管理</Link>
                             </li>
                             <li>
+                                <Icon name='statistics'/>
                                 <Link to="/statistics">账目统计</Link>
                             </li>
                         </Ul>
