@@ -1,18 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import Home from "../../views/Home/Home";
-import Statistics from "../../views/Statistics/Statistics";
-import Tag from "../../views/Tag/Tag";
-import NotFound from "../../views/404/NotFound";
 import Icon from "../Icon/Icon";
-const Container = styled.div`
-height: 100%;
-width: 100%;
-display: flex;
-flex-direction: column;
-`;
 const Ul  =styled.ul`
   display: flex;
   flex-direction: row;
@@ -30,46 +19,23 @@ const Ul  =styled.ul`
   align-items: center;
   }
 `;
-const SwitchWarpper =  styled.div`
-    flex: 1;
-    background: #FFCC99;;
-    color: black;
-    overflow: auto;
-`;
-class NavBar extends React.Component {
-    render() {
-        return (
-                <Router>
-                    <Container>
-                        <SwitchWarpper>
-                        <Switch>
-                            <Route exact path="/money" component={Home} />
-                            <Route path="/tag" component={Tag} exact />
-                            <Route path="/statistics" component={Statistics} exact />
-                            <Redirect exact from="/"  to="/money"/>
-                            <Route  exact path="*"  component={NotFound}/>
-                        </Switch>
-                        </SwitchWarpper>
-                        <Ul>
-                            <li>
-                                <Icon name='money'/>
-                                <Link to="/money">记一笔</Link>
-                            </li>
-                            <li>
-                                <Icon name='tag'/>
-                                <Link to="/tag">标签管理</Link>
-                            </li>
-                            <li>
-                                <Icon name='statistics'/>
-                                <Link to="/statistics">账目统计</Link>
-                            </li>
-                        </Ul>
-                    </Container>
-                </Router>
-        )
-    }
-}
-
-
+const NavBar =()=> {
+    return (
+        <Ul>
+            <li>
+                <Icon name='money'/>
+                <Link to="/money">记一笔</Link>
+            </li>
+            <li>
+                <Icon name='tag'/>
+                <Link to="/tag">标签管理</Link>
+            </li>
+            <li>
+                <Icon name='statistics'/>
+                <Link to="/statistics">账目统计</Link>
+            </li>
+        </Ul>
+    )
+};
 
 export default NavBar
