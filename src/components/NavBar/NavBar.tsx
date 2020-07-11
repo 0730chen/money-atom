@@ -13,26 +13,38 @@ const Ul  =styled.ul`
   text-align: center;
   padding: 4px 0;
   color: white;
-  display: flex;
-  flex-direction:column;
-  justify-content: center;
-  align-items: center;
+  a{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+  }
+  .icon{
+    width: 24px;
+    height: 24px;
+}
   }
 `;
 const NavBar =()=> {
     return (
         <Ul>
             <li>
-                <Icon name='money'/>
-                <Link to="/money">记一笔</Link>
+                <Link to="/money">
+                    <Icon name='money'/>
+                    记一笔
+                </Link>
             </li>
             <li>
-                <Icon name='tag'/>
-                <Link to="/tag">标签管理</Link>
+                <Link to="/tag">
+                    <Icon name='tag'/>
+                    标签管理
+                </Link>
             </li>
             <li>
-                <Icon name='statistics'/>
-                <Link to="/statistics">账目统计</Link>
+                <Link to="/statistics">
+                    <Icon name='statistics'/>
+                    账目统计
+                </Link>
             </li>
         </Ul>
     )

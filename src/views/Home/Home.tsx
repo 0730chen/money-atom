@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 const Container = styled.div`
   flex: 1;
+  background:#FFCC99;
 `;
 const Home = ()=>(
         <Layout>
