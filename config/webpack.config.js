@@ -363,7 +363,11 @@ module.exports = function(webpackEnv) {
               test: /\.svg$/,
               use: [
                 { loader: 'svg-sprite-loader', options: {} },
-                'svgo-loader'
+                {loader:'svgo-loader',options:{
+                  plugins:[
+                    {removeAttrs:{attrs:'fill'}}
+                  ]
+                  }}
               ]
             },
             // Process application JS with Babel.

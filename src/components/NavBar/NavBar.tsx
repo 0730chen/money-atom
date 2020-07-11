@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "../Icon/Icon";
 const Ul  =styled.ul`
@@ -13,6 +13,9 @@ const Ul  =styled.ul`
   text-align: center;
   padding: 4px 0;
   color: white;
+  .select{
+  color:#FFCC99;
+  }
   a{
     display: flex;
     flex-direction:column;
@@ -29,22 +32,22 @@ const NavBar =()=> {
     return (
         <Ul>
             <li>
-                <Link to="/money">
+                <NavLink to="/money" activeClassName="select">
                     <Icon name='money'/>
                     记一笔
-                </Link>
+                </NavLink>
             </li>
             <li>
-                <Link to="/tag">
+                <NavLink to="/tag" activeClassName="select">
                     <Icon name='tag'/>
                     标签管理
-                </Link>
+                </NavLink>
             </li>
             <li>
-                <Link to="/statistics">
+                <NavLink to="/statistics" activeClassName="select">
                     <Icon name='statistics'/>
                     账目统计
-                </Link>
+                </NavLink>
             </li>
         </Ul>
     )
