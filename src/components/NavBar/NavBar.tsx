@@ -6,7 +6,6 @@ const Ul  =styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #99CCCC;
   justify-content: center;
   li{
   width: 33.3333%;
