@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 
-const _TypeSection = styled.section`
+const Wrapper = styled.section`
   display: flex;
   font-size: 24px;
   background: #c4c4c4;
@@ -25,10 +25,10 @@ const _TypeSection = styled.section`
 
 const TypeSection:React.FC= ()=>{
     return (
-        <_TypeSection>
+        <Wrapper>
             <button className="select">收入</button>
             <button>支出</button>
-        </_TypeSection>
+        </Wrapper>
     )
 }
 

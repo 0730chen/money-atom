@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
-const _TagsSections = styled.section`
+const Wrapper = styled.section`
   background: #ffffff;
   padding: 12px 16px;
   flex: 1;
@@ -32,16 +32,24 @@ const _TagsSections = styled.section`
   }
 `;
 const TagsSections:React.FunctionComponent = ()=>{
+    const [tags,setTags] = useState<string[]>(['衣服','食物','住宿','出行'])
+    const onAddTag  = ()=>{
+        const tagName = window.prompt('新增标签名')
+        if(tagName !==null && tagName!==''){
+            setTags([...tags,tagName])
+        }else {
+            alert('标签名不能为空')
+        }
+    }
     return(
-        <_TagsSections>
+        <Wrapper>
             <ul>
-                <li>衣服</li>
-                <li>食物</li>
-                <li>住</li>
-                <li>行</li>
+                {tags.map(tag=>{
+                    return <li key={tag}>{tag}</li>
+                })}
             </ul>
-            <button>新增标签</button>
-        </_TagsSections>
+            <button onClick={onAddTag}>新增标签</button>
+        </Wrapper>
     )
 }
 export {TagsSections}
