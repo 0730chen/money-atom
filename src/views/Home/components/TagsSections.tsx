@@ -20,6 +20,9 @@ const Wrapper = styled.section`
       background: #82ffe0;
       font-size: 14px;
       margin: 8px 12px;
+      &.selected{
+        background: chocolate;
+      }
     }
   }
   button{
@@ -33,6 +36,7 @@ const Wrapper = styled.section`
 `;
 const TagsSections:React.FunctionComponent = ()=>{
     const [tags,setTags] = useState<string[]>(['衣服','食物','住宿','出行'])
+    const[selectedTags,setSelectedTags] = useState<string[]>([])
     const onAddTag  = ()=>{
         const tagName = window.prompt('新增标签名')
         if(tagName !==null && tagName!==''){
@@ -41,11 +45,20 @@ const TagsSections:React.FunctionComponent = ()=>{
             alert('标签名不能为空')
         }
     }
+    const onToggleTag  = (tag:string)=>{
+        console.log(tag)
+        const index  =selectedTags.indexOf(tag)
+        if(index>=0){
+            setSelectedTags(selectedTags.filter(t=>t!==tag))
+        }else{
+            setSelectedTags([...selectedTags,tag])
+        }
+    }
     return(
         <Wrapper>
             <ul>
                 {tags.map(tag=>{
-                    return <li key={tag}>{tag}</li>
+                    return <li key={tag} onClick={()=>onToggleTag(tag)} className={selectedTags.indexOf(tag)>=0?'selected':''}>{tag}</li>
                 })}
             </ul>
             <button onClick={onAddTag}>新增标签</button>
