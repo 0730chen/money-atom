@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, {useState} from "react";
 
 const Wrapper = styled.section`
   display: flex;
@@ -12,7 +12,7 @@ const Wrapper = styled.section`
   padding: 16px 0;
   position: relative;
   }
-  &>.select::after{
+  &>.selected::after{
     content: '';
     height: 3px;
     position: absolute;
@@ -24,10 +24,18 @@ const Wrapper = styled.section`
 `
 
 const TypeSection:React.FC= ()=>{
+    const categoryMap = {
+        '-':'支出',
+        '+':'收入'
+    }
+    type Keys = keyof typeof categoryMap
+    const [categoryList] =  useState<Keys[]>(['-','+'])
+    const [Category,setCategory] = useState('-') //-表示支出，+表示收入
     return (
         <Wrapper>
-            <button className="select">收入</button>
-            <button>支出</button>
+            {categoryList.map(item=>{
+                return  <button className={Category === item ? 'selected':''} key={item} onClick={()=>{setCategory(item)}}>{categoryMap[item]}</button>
+            })}
         </Wrapper>
     )
 }
