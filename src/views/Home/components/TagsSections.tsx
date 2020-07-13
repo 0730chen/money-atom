@@ -13,12 +13,14 @@ const Wrapper = styled.section`
   margin: 0 -12px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     li{
       padding: 4px 16px;
       display: inline-block;
       border-radius: 10px;
       background: #82ffe0;
       font-size: 14px;
+      white-space: nowrap;
       margin: 8px 12px;
       &.selected{
         background: chocolate;
