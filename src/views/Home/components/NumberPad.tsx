@@ -1,6 +1,7 @@
 
 import React, {useState} from "react";
 import Wrapper from "./NumberSection/Wrapper";
+import SetOutPut from "./NumberSection/SetOutPut";
 
 const NumberPad:React.FC = ()=>{
     const[output,setOutput] = useState('0')
@@ -13,41 +14,17 @@ const NumberPad:React.FC = ()=>{
         setOutput(output)
     }
     const onClickNumber = (e:React.MouseEvent)=>{
+
         const text = (e.target as HTMLButtonElement).textContent
         if(text === null){
             return
         }
-        switch (text) {
-            case '0':
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-                if(output ==='0'){
-                    _setOutput(text)
-                }else {
-                    _setOutput(output+text)
-                }
-                break;
-            case '.':
-                if(output.indexOf('.')>0){return}
-                _setOutput(output+'.')
-                break;
-            case '删除':
-                if(output.length===1){
-                    _setOutput('0')
-                }else {
-                    _setOutput(output.slice(0,-1))
-                }
-                break;
-            case '清空':
-                _setOutput('0')
-                break;
+        if(text==='ok'){
+            //保存所有数据
+            return
+        }
+        if('0123456789.'.split(',').concat('删除','清空').indexOf(text)){
+            _setOutput(SetOutPut(text,output))
         }
     }
     return (
