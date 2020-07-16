@@ -15,36 +15,27 @@ const Container = styled.div`
 
 type Category = '-'|'+'
 const Home = ()=> {
-
     const [obj, setObj] = useState({
         tags: [] as string[],
         note:'',
         category:'-' as Category,
         amount:0
     })
+    type Selected = typeof obj
+    const onChange = (value:Partial<Selected>)=>{
+        setObj({...obj,...value})
+
+    }
+
 
     return (
         <Layout>
             <Container>
-                <TagsSections selected={obj.tags} onChange={(tags)=>setObj({
-                    ...obj,
-                    tags:tags
-                })}/>
-                <NotesSection value={obj.note} onChange={(value)=>setObj(({
-                    ...obj,
-                    note: value
-                }))}/>
-                <TypeSection value={obj.category} onChange={(value)=>{
-                    setObj({
-                        ...obj,
-                        category: value
-                    })
-                }}/>
-                <NumberPad value={obj.amount} onChange={(value)=>{
-                    setObj({
-                        ...obj,
-                        amount: value
-                    })
+                <TagsSections selected={obj.tags} onChange={tags=>onChange({tags})}/>
+                <NotesSection value={obj.note} onChange={(note)=>onChange({note})}/>
+                <TypeSection value={obj.category} onChange={(category)=>onChange({category})
+               }/>
+                <NumberPad value={obj.amount} onChange={(amount)=>{onChange({amount})
                 }}/>
             </Container>
             <NavBar/>
