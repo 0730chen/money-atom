@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 
 const _NotesSection = styled.section`
   font-size: 14px;
@@ -24,20 +24,25 @@ const _NotesSection = styled.section`
 @params 受控组件 value和setValue由自己控制,
 @params 非受控组件，值和value由外部控制
 * */
-const NotesSection:React.FC = ()=>{
-    const [Notes,setNotes] = useState('')
+
+type Pros = {
+    value:string,
+    onChange:(value:string)=>void
+}
+const NotesSection:React.FC<Pros> = (props:Pros)=>{
+    const note = props.value
     const inputRef = useRef<HTMLInputElement>(null)
     const x = ()=>{
         if(inputRef.current !==null){
-            setNotes(inputRef.current.value)
+            props.onChange(inputRef.current.value)
         }
     }
     return (
         <_NotesSection>
             <label>
                 <span>备注</span>
-                <input type="text" placeholder="在这里输入备注" value={Notes} onChange={e=>{setNotes(e.target.value)}}/>
-                <input type="text"  placeholder="在这里输入备注" defaultValue={Notes} onMouseDown={x} ref={inputRef}/>
+                {/*<input type="text" placeholder="在这里输入备注" value={Notes} onChange={e=>{setNotes(e.target.value)}}/>*/}
+                <input type="text"  placeholder="在这里输入备注" defaultValue={note} onMouseDown={x} ref={inputRef}/>
             </label>
         </_NotesSection>
     )

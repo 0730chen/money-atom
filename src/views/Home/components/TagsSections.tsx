@@ -36,9 +36,15 @@ const Wrapper = styled.section`
   color: #666;
   }
 `;
-const TagsSections:React.FunctionComponent = ()=>{
+
+type Pros =  {
+    selected:string[],
+    onChange:(selected:string[])=>void
+}
+
+const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
     const [tags,setTags] = useState<string[]>(['衣服','食物','住宿','出行'])
-    const[selectedTags,setSelectedTags] = useState<string[]>([])
+    const selectedTags = props.selected
     const onAddTag  = ()=>{
         const tagName = window.prompt('新增标签名')
         if(tagName !==null && tagName!==''){
@@ -48,12 +54,11 @@ const TagsSections:React.FunctionComponent = ()=>{
         }
     }
     const onToggleTag  = (tag:string)=>{
-        console.log(tag)
         const index  =selectedTags.indexOf(tag)
         if(index>=0){
-            setSelectedTags(selectedTags.filter(t=>t!==tag))
+            props.onChange(selectedTags.filter(t=>t!==tag))
         }else{
-            setSelectedTags([...selectedTags,tag])
+            props.onChange([...selectedTags,tag])
         }
     }
     return(

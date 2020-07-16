@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Layout from "../../components/Layout/Layout";
 import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
@@ -12,21 +12,34 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-// @ts-ignore
-const Home = ()=>(
+
+type Category = '_'|'+'
+const Home = ()=> {
+
+    const [obj, setObj] = useState({
+        tags: [] as string[],
+        note:'',
+        category:'-' as Category,
+        amount:0
+    })
+
+    return (
         <Layout>
             <Container>
-                <TagsSections>
-                </TagsSections>
-                <NotesSection>
-                </NotesSection>
-                <TypeSection>
-                </TypeSection>
-                <NumberPad>
-                </NumberPad>
+                <TagsSections selected={obj.tags} onChange={(tags)=>setObj({
+                    ...obj,
+                    tags:tags
+                })}/>
+                <NotesSection value={obj.note} onChange={(value)=>setObj(({
+                    ...obj,
+                    note: value
+                }))}/>
+                <TypeSection/>
+                <NumberPad/>
             </Container>
             <NavBar/>
         </Layout>
-    );
+    )
+}
 
 export default  Home
