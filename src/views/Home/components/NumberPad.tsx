@@ -1,17 +1,26 @@
 
-import React, {useState} from "react";
+import React from "react";
 import Wrapper from "./NumberSection/Wrapper";
 import SetOutPut from "./NumberSection/SetOutPut";
 
-const NumberPad:React.FC = ()=>{
-    const[output,setOutput] = useState('0')
+type Props = {
+    value:number,
+    onChange:(value:number)=>void
+}
+const NumberPad:React.FC<Props> = (props:Props)=>{
+    const output = props.value.toString()
     const _setOutput  = (output:string)=>{
+        let value
         if(output.length>16){
-            output.slice(0,16)
+            value  = parseFloat(output.slice(0,16))
         }else if(output.length===0){
-            output = '0'
+            value = 0
+        }else {
+            //TODO输入小数点不会同步
+            value = parseFloat(output)
+            console.log(value)
         }
-        setOutput(output)
+        props.onChange(value)
     }
     const onClickNumber = (e:React.MouseEvent)=>{
 

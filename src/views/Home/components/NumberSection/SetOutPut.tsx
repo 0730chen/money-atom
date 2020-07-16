@@ -17,8 +17,13 @@ const SetOutPut = (text:string,outPut='0')=>{
                return outPut+text
             }
         case '.':
-            if(outPut.indexOf('.')>0){return outPut}
-            return outPut +'.'
+            if(outPut.indexOf('.')>0){
+                console.log(outPut)
+                return outPut
+            }else {
+                console.log(outPut,text,outPut+text)
+                return outPut +text
+            }
         case '删除':
             if(outPut.length===1){
                 return ''

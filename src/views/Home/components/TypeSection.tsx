@@ -23,18 +23,22 @@ const Wrapper = styled.section`
   }
 `
 
-const TypeSection:React.FC= ()=>{
+type Props ={
+    value:'-'|'+',
+    onChange:(value:'-'|'+')=>void
+}
+const TypeSection:React.FC<Props>= (props:Props)=>{
     const categoryMap = {
         '-':'支出',
         '+':'收入'
     }
+    const category = props.value
     type Keys = keyof typeof categoryMap
     const [categoryList] =  useState<Keys[]>(['-','+'])
-    const [Category,setCategory] = useState('-') //-表示支出，+表示收入
     return (
         <Wrapper>
             {categoryList.map(item=>{
-                return  <button className={Category === item ? 'selected':''} key={item} onClick={()=>{setCategory(item)}}>{categoryMap[item]}</button>
+                return  <button className={category === item ? 'selected':''} key={item} onClick={()=>{props.onChange(item)}}>{categoryMap[item]}</button>
             })}
         </Wrapper>
     )

@@ -13,7 +13,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-type Category = '_'|'+'
+type Category = '-'|'+'
 const Home = ()=> {
 
     const [obj, setObj] = useState({
@@ -34,8 +34,18 @@ const Home = ()=> {
                     ...obj,
                     note: value
                 }))}/>
-                <TypeSection/>
-                <NumberPad/>
+                <TypeSection value={obj.category} onChange={(value)=>{
+                    setObj({
+                        ...obj,
+                        category: value
+                    })
+                }}/>
+                <NumberPad value={obj.amount} onChange={(value)=>{
+                    setObj({
+                        ...obj,
+                        amount: value
+                    })
+                }}/>
             </Container>
             <NavBar/>
         </Layout>
