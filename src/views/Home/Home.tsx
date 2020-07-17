@@ -26,8 +26,6 @@ const Home = ()=> {
         setObj({...obj,...value})
 
     }
-
-
     return (
         <Layout>
             <Container>
@@ -35,7 +33,7 @@ const Home = ()=> {
                 <NotesSection value={obj.note} onChange={(note)=>onChange({note})}/>
                 <TypeSection value={obj.category} onChange={(category)=>onChange({category})
                }/>
-                <NumberPad value={obj.amount} onChange={(amount)=>{onChange({amount})
+                <NumberPad value={obj.amount}  onOk={()=>{}} onChange={(amount)=>{onChange({amount})
                 }}/>
             </Container>
             <NavBar/>

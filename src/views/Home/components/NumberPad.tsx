@@ -5,7 +5,8 @@ import SetOutPut from "./NumberSection/SetOutPut";
 
 type Props = {
     value:number,
-    onChange:(value:number)=>void
+    onChange:(value:number)=>void,
+    onOk?:(value:Object)=>void
 }
 const NumberPad:React.FC<Props> = (props:Props)=>{
     const output = props.value.toString()
@@ -30,7 +31,7 @@ const NumberPad:React.FC<Props> = (props:Props)=>{
         }
         if(text==='ok'){
             //保存所有数据
-            return
+            return;
         }
         if('0123456789.'.split(',').concat('删除','清空').indexOf(text)){
             _setOutput(SetOutPut(text,output))
