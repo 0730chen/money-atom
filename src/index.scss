@@ -39,6 +39,15 @@ a{
   display: block;
   clear: both;
 }
+.icon{
+  width: 24px;
+  height: 24px;
+}
+.oneLine{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 //背景色
 $background:#99CCCC;
 //导航色
