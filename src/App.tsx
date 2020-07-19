@@ -6,6 +6,7 @@ import Home from "./views/Home/Home";
 import Tag from "./views/Tag/Tag";
 import Statistics from "./views/Statistics/Statistics";
 import NotFound from "./views/404/NotFound";
+import Login from "./views/Login/Login";
 const Container = styled.div`
 height: 100%;
 width: 100%;
@@ -19,7 +20,8 @@ function App() {
                       <Route exact path="/money" component={Home} />
                       <Route path="/tag" component={Tag} exact />
                       <Route path="/statistics" component={Statistics} exact />
-                      <Redirect exact from="/"  to="/money"/>
+                      <Route path='/login' component={Login} exact/>
+                      <Redirect exact from="/"  to="/login"/>
                       <Route  exact path="*"  component={NotFound}/>
                   </Switch>
           </Container>
