@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 const Container = styled.div`
 display: flex;
 flex-direction: column;
+background: url('image/background.jpg') 100% 100% no-repeat;
 width: 100%;
 justify-content: center;
 align-items: center;
