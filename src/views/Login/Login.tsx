@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React, { useState} from "react";
 import Icon from "../../components/Icon/Icon";
 import { useHistory } from "react-router-dom";
+import useAxios from 'axios-hooks'
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -57,7 +58,14 @@ const Login =()=>{
     let history = useHistory()
     const onLogin = ()=>{
         console.log(name,password);
-        history.push('/money')
+        const [{ data, loading, error }, refetch] = useAxios(
+            '/api/login'
+        )
+        if(data){
+            // history.push('/money')
+            console.log(history);
+        }
+        console.log(loading,error,refetch());
     }
     const [name,setName] = useState('')
     const [password,setPassword] = useState('')

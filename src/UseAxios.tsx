@@ -1,7 +1,7 @@
 /*
 @Params自定义axios钩子函数
  */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const useAxios = (url:string) => {
     const [data, updateData] = useState(undefined);
