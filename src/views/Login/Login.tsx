@@ -2,7 +2,8 @@ import styled from "styled-components";
 import React, { useState} from "react";
 import Icon from "../../components/Icon/Icon";
 import { useHistory } from "react-router-dom";
-import useAxios from 'axios-hooks'
+import axios from 'axios'
+import  qs from 'qs'
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -46,26 +47,38 @@ background: #ff6600;
 text-align: center;
 color: white;
 `
-const Form = styled.form`
+const Form = styled.div`
 width: 100%;
 display: flex;
 flex-direction: column;
 align-items: flex-end;
 padding: 16px;
 `
-
+type Form = {
+    name:string,
+    password:string
+}
 const Login =()=>{
     let history = useHistory()
     const onLogin = ()=>{
-        console.log(name,password);
-        const [{ data, loading, error }, refetch] = useAxios(
-            '/api/login'
-        )
-        if(data){
             // history.push('/money')
-            console.log(history);
+        let form = {
+            name,
+            password
         }
-        console.log(loading,error,refetch());
+        console.log(form)
+        axios.get('api').then(res=>{
+            console.log(res)
+        })
+        axios.get('api/login').then(res=>{
+            console.log(res);
+            console.log(history)
+        }).catch(error=>{
+            console.log(error)
+        })
+        axios.post('api/login',qs.stringify(form)).then(res=>{
+            console.log(res);
+        })
     }
     const [name,setName] = useState('')
     const [password,setPassword] = useState('')
@@ -82,7 +95,7 @@ const Login =()=>{
                     <Icon name='password'/>
                     <input placeholder='请输入密码' type='text' value={password} onChange={e=>{setPassword(e.target.value)}}/>
                 </Input>
-                <Button onClick={()=>{onLogin()}}>登陆</Button>
+                <Button onClick={onLogin}>登陆</Button>
             </Form>
         </Container>
     )
