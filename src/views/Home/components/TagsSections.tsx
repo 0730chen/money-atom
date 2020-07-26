@@ -39,34 +39,36 @@ const Wrapper = styled.section`
 `;
 
 type Pros =  {
-    selected:string[],
-    onChange:(selected:string[])=>void
+    selected:number[],
+    onChange:(selected:number[])=>void
 }
 
 const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
     let{tags,setTags} = UserTage()
-    const selectedTags = props.selected
+    const selectedTagIds = props.selected
     const onAddTag  = ()=>{
         const tagName = window.prompt('新增标签名')
         if(tagName !==null && tagName!==''){
-            setTags([...tags,tagName])
+
+            setTags([...tags,{id:Math.random(),name:tagName}])
         }else {
             alert('标签名不能为空')
         }
     }
-    const onToggleTag  = (tag:string)=>{
-        const index  =selectedTags.indexOf(tag)
+    const onToggleTag  = (tagId:number)=>{
+        const index  =selectedTagIds.indexOf(tagId)
         if(index>=0){
-            props.onChange(selectedTags.filter(t=>t!==tag))
+            props.onChange(selectedTagIds.filter(t=>t!==tagId))
         }else{
-            props.onChange([...selectedTags,tag])
+            props.onChange([...selectedTagIds,tagId])
         }
     }
+    const getClass = (tagsId:number) =>selectedTagIds.indexOf(tagsId) >0?'selected':''
     return(
         <Wrapper>
             <ul>
                 {tags.map(tag=>{
-                    return <li key={tag} onClick={()=>onToggleTag(tag)} className={selectedTags.indexOf(tag)>=0?'selected':''}>{tag}</li>
+                    return <li key={tag.id} onClick={()=>onToggleTag(tag.id)} className={getClass((tag.id))}>{tag.name}</li>
                 })}
             </ul>
             <button onClick={onAddTag}>新增标签</button>

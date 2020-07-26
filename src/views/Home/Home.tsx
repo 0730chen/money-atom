@@ -16,7 +16,7 @@ const Container = styled.div`
 type Category = '-'|'+'
 const Home = ()=> {
     const [obj, setObj] = useState({
-        tags: [] as string[],
+        tags: [] as number[],
         note:'',
         category:'-' as Category,
         amount:0

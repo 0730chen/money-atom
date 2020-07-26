@@ -51,9 +51,9 @@ const Tag = ()=> {
             <Container>
                 <Taglist>
                 {tags.map(e=>{
-                    return<li key={e}>
+                    return<li key={e.id}>
                         <Link to={'/tags/?'+e}>
-                        <span className='oneLine' >{e}</span>
+                        <span className='oneLine' >{e.name}</span>
                         <Icon name='right'/>
                         </Link>
                     </li>
