@@ -2,8 +2,8 @@ import styled from "styled-components";
 import React, { useState} from "react";
 import Icon from "../../components/Icon/Icon";
 import { useHistory } from "react-router-dom";
-import axios from 'axios'
-import  qs from 'qs'
+// import axios from 'axios'
+// import  qs from 'qs'
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -61,24 +61,24 @@ type Form = {
 const Login =()=>{
     let history = useHistory()
     const onLogin = ()=>{
-            // history.push('/money')
-        let form = {
-            name,
-            password
-        }
-        console.log(form)
-        axios.get('api').then(res=>{
-            console.log(res)
-        })
-        axios.get('api/login').then(res=>{
-            console.log(res);
-            console.log(history)
-        }).catch(error=>{
-            console.log(error)
-        })
-        axios.post('api/login',qs.stringify(form)).then(res=>{
-            console.log(res);
-        })
+            history.push('/money')
+        // let form = {
+        //     name,
+        //     password
+        // }
+        // console.log(form)
+        // axios.get('api').then(res=>{
+        //     console.log(res)
+        // })
+        // axios.get('api/login').then(res=>{
+        //     console.log(res);
+        //     console.log(history)
+        // }).catch(error=>{
+        //     console.log(error)
+        // })
+        // axios.post('api/login',qs.stringify(form)).then(res=>{
+        //     console.log(res);
+        // })
     }
     const [name,setName] = useState('')
     const [password,setPassword] = useState('')

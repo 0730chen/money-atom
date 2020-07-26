@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 import UserTage from "../../UseTags";
 import Icon from "../../components/Icon/Icon";
+import {Link} from "react-router-dom";
 const Container = styled.div`
   flex: 1;
   background:#FFCC99;
@@ -14,12 +15,14 @@ const Taglist = styled.ol`
    >li{
    border-bottom: 2px solid #e5e5e5;
    line-height: 20px;
-   padding: 12px 16px 12px 0;
    margin-left:16px ;
+   >a{
    display: flex;
    flex-direction: row;
    justify-content: space-between;
    align-items: center;
+   padding: 12px 16px 12px 0;
+   }
    }
 `
 const Button = styled.button`
@@ -48,7 +51,12 @@ const Tag = ()=> {
             <Container>
                 <Taglist>
                 {tags.map(e=>{
-                    return<li className='oneLine' key={e}>{e}<Icon name='right'/></li>
+                    return<li key={e}>
+                        <Link to={'/tags/?'+e}>
+                        <span className='oneLine' >{e}</span>
+                        <Icon name='right'/>
+                        </Link>
+                    </li>
                 })}
                 </Taglist>
                 <Center>
