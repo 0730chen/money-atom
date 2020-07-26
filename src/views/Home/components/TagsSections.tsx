@@ -63,12 +63,14 @@ const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
             props.onChange([...selectedTagIds,tagId])
         }
     }
-    const getClass = (tagsId:number) =>selectedTagIds.indexOf(tagsId) >0?'selected':''
+    const getClass = (tagsId:number) =>{
+        return selectedTagIds.indexOf(tagsId) >=0?'selected':''
+    }
     return(
         <Wrapper>
             <ul>
                 {tags.map(tag=>{
-                    return <li key={tag.id} onClick={()=>onToggleTag(tag.id)} className={getClass((tag.id))}>{tag.name}</li>
+                    return <li key={tag.id} onClick={()=>onToggleTag(tag.id)} className={getClass(tag.id)}>{tag.name}</li>
                 })}
             </ul>
             <button onClick={onAddTag}>新增标签</button>
