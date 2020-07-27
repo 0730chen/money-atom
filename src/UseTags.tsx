@@ -11,8 +11,9 @@ const UserTags = ()=>{
     const [tags,setTags] = useState<{id:number;name:string}[]>(
         defaultTags
     )
+    const findTag = (id:number) => tags.filter(e=>e.id===id)[0]
     return {
-        tags,setTags
+        tags,setTags,findTag
     }
 
 }

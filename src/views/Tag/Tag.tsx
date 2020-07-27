@@ -52,7 +52,7 @@ const Tag = ()=> {
                 <Taglist>
                 {tags.map(e=>{
                     return<li key={e.id}>
-                        <Link to={'/tags?'+e.id}>
+                        <Link to={'/tag/'+e.id}>
                         <span className='oneLine' >{e.name}</span>
                         <Icon name='right'/>
                         </Link>
