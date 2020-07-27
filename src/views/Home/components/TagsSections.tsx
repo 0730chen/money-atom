@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import UserTage from "UseTags";
+import UserTags from "UseTags";
+import {createId} from "../../../lib/createId";
 
 const Wrapper = styled.section`
   background: #ffffff;
@@ -44,13 +45,13 @@ type Pros =  {
 }
 
 const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
-    let{tags,setTags} = UserTage()
+    let{tags,setTags} = UserTags()
     const selectedTagIds = props.selected
     const onAddTag  = ()=>{
         const tagName = window.prompt('新增标签名')
         if(tagName !==null && tagName!==''){
 
-            setTags([...tags,{id:Math.random(),name:tagName}])
+            setTags([...tags,{id:createId(),name:tagName}])
         }else {
             alert('标签名不能为空')
         }

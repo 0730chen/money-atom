@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout/Layout";
 import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
-import UserTage from "../../UseTags";
+import UserTags from "../../UseTags";
 import Icon from "../../components/Icon/Icon";
 import {Link} from "react-router-dom";
 const Container = styled.div`
@@ -44,7 +44,7 @@ const Space = styled.div`
 height: 16px;
 `
 const Tag = ()=> {
-    const {tags,setTags} = UserTage()
+    const {tags,setTags} = UserTags()
     console.log(setTags);
     return(
         <Layout>
@@ -52,7 +52,7 @@ const Tag = ()=> {
                 <Taglist>
                 {tags.map(e=>{
                     return<li key={e.id}>
-                        <Link to={'/tags/?'+e}>
+                        <Link to={'/tags?'+e.id}>
                         <span className='oneLine' >{e.name}</span>
                         <Icon name='right'/>
                         </Link>

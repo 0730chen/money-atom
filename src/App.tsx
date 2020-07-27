@@ -20,7 +20,7 @@ function App() {
                   <Switch>
                       <Route exact path="/money" component={Home} />
                       <Route path="/tag" component={Tag} exact />
-                      <Route path="/tag/:tags" component={EditorTags} exact />
+                      <Route path="/tag:id" component={EditorTags} exact />
                       <Route path="/statistics" component={Statistics} exact />
                       <Route path='/login' component={Login} exact/>
                       <Redirect exact from="/"  to="/login"/>
