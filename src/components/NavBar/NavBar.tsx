@@ -31,19 +31,19 @@ const NavBar =()=> {
     return (
         <Ul>
             <li>
-                <NavLink to="/money" activeClassName="select">
+                <NavLink to="/money" activeClassName="select" exact>
                     <Icon name='money'/>
                     记一笔
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/tag" activeClassName="select">
+                <NavLink to="/tag" activeClassName="select" exact>
                     <Icon name='tag'/>
                     标签管理
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/statistics" activeClassName="select">
+                <NavLink to="/statistics" activeClassName="select" exact>
                     <Icon name='statistics'/>
                     账目统计
                 </NavLink>
