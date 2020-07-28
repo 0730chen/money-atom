@@ -5,6 +5,7 @@ import styled from "styled-components";
 import UserTags from "../../UseTags";
 import Icon from "../../components/Icon/Icon";
 import {Link} from "react-router-dom";
+import Button from "../../components/Button/Button";
 const Container = styled.div`
   flex: 1;
   background:#FFCC99;
@@ -24,15 +25,6 @@ const Taglist = styled.ol`
    padding: 12px 16px 12px 0;
    }
    }
-`
-const Button = styled.button`
-font-size: 18px;
-border:none;
-padding:8px 12px;
-border-radius: 4px;
-background: #ff6600;
-color: white;
-margin: auto 0;
 `
 const Center = styled.div`
 display: flex;
@@ -62,7 +54,7 @@ const Tag = ()=> {
                 <Center>
                     <Space/>
                     <Space/>
-                <Button>新增标签</Button>
+                    <Button>新增标签</Button>
                 </Center>
             </Container>
             <NavBar/>
