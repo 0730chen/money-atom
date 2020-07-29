@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import React, {useRef} from "react";
+import React from "react";
+import Input from "../../../components/Input/Input";
 
 const _NotesSection = styled.section`
   font-size: 14px;
@@ -31,19 +32,18 @@ type Pros = {
 }
 const NotesSection:React.FC<Pros> = (props:Pros)=>{
     const note = props.value
-    const inputRef = useRef<HTMLInputElement>(null)
-    const x = ()=>{
-        if(inputRef.current !==null){
-            props.onChange(inputRef.current.value)
-        }
+    // const inputRef = useRef<HTMLInputElement>(null)
+    const onChange= (e: { target: { value: string; }; })=>{
+        props.onChange(e.target.value)
     }
     return (
         <_NotesSection>
-            <label>
-                <span>备注</span>
-                {/*<input type="text" placeholder="在这里输入备注" value={Notes} onChange={e=>{setNotes(e.target.value)}}/>*/}
-                <input type="text"  placeholder="在这里输入备注" defaultValue={note} onMouseDown={x} ref={inputRef}/>
-            </label>
+            {/*<label>*/}
+            {/*    <span>备注</span>*/}
+            {/*    /!*<input type="text" placeholder="在这里输入备注" value={Notes} onChange={e=>{setNotes(e.target.value)}}/>*!/*/}
+            {/*    <input type="text"  placeholder="在这里输入备注" defaultValue={note} onMouseDown={x} ref={inputRef}/>*/}
+            {/*</label>*/}
+            <Input label='备注' type='text' defaultValue={note} placeholder='请输入备注' onChange={onChange}/>
         </_NotesSection>
     )
 }

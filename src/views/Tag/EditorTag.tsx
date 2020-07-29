@@ -6,6 +6,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 import Icon from "../../components/Icon/Icon";
 import Button from "../../components/Button/Button";
+import Input from "../../components/Input/Input";
 type Params = {
     id:string
 }
@@ -27,6 +28,16 @@ font-weight: 800;
 padding-right: 8px;
 }
 `
+const Section = styled.section`
+padding-top: 16px;
+display: flex;
+flex-direction: column;
+align-items: center;
+>button{
+padding: 8px;
+margin-top: 16px;
+}
+`
 const EditorTags:React.FC = ()=>{
     const {findTag}= UserTags()
     let {id} = useParams<Params>()
@@ -38,16 +49,10 @@ const EditorTags:React.FC = ()=>{
                         <Icon name='left'/>
                         <span>编辑标签</span>
                     </Header>
-                    <div>
-                        <label>
-                            <span>标签名</span>
-                            <input type="text" placeholder="请输入标签名"/>
-                        </label>
-                    </div>
-                    <div>
-                        {tag.name}
-                    </div>
-                    <Button>删除标签</Button>
+                    <Section>
+                        <Input label='标签名' placeholder={'请填写标签名'} defaultValue={tag.name}/>
+                        <Button>删除标签</Button>
+                    </Section>
                 </Container>
                 <NavBar/>
             </Layout>
