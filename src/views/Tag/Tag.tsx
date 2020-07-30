@@ -6,6 +6,7 @@ import UserTags from "../../UseTags";
 import Icon from "../../components/Icon/Icon";
 import {Link} from "react-router-dom";
 import Button from "../../components/Button/Button";
+import Space from "../../common/style/Space";
 const Container = styled.div`
   flex: 1;
   background:#FFCC99;
@@ -31,9 +32,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-`
-const Space = styled.div`
-height: 16px;
 `
 const Tag = ()=> {
     const {tags,setTags} = UserTags()

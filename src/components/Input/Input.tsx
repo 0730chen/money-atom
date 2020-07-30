@@ -24,9 +24,7 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Input:React.FC<Props> = (props:Props)=>{
-    console.log(props.label);
     const {label,...reset} = props
-
     return(
         <Label>
             <span>{label}</span>

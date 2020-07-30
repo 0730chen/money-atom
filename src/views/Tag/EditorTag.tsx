@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Icon from "../../components/Icon/Icon";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import Space from "../../common/style/Space";
 type Params = {
     id:string
 }
@@ -35,13 +36,12 @@ flex-direction: column;
 align-items: center;
 >button{
 padding: 8px;
-margin-top: 16px;
 }
 `
 const EditorTags:React.FC = ()=>{
-    const {findTag}= UserTags()
-    let {id} = useParams<Params>()
-    const tag =findTag(parseInt(id))
+    const {findTag,updateTag}= UserTags()
+    let {id} = useParams<Params>();
+    const tag =findTag(parseInt(id));
     return (
             <Layout>
                 <Container>
@@ -50,7 +50,11 @@ const EditorTags:React.FC = ()=>{
                         <span>编辑标签</span>
                     </Header>
                     <Section>
-                        <Input label='标签名' placeholder={'请填写标签名'} defaultValue={tag.name}/>
+                        <Input label='标签名' placeholder={'请填写标签名'} defaultValue={tag.name} onChange={(e)=>{
+                            updateTag(tag.id,{name:e.target.value})
+                        }}/>
+                        <Space/>
+                        <Space/>
                         <Button>删除标签</Button>
                     </Section>
                 </Container>
