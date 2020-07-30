@@ -39,27 +39,27 @@ padding: 8px;
 }
 `
 const EditorTags:React.FC = ()=>{
-    const {findTag,updateTag}= UserTags()
+    const {findTag,updateTag,deleteTag}= UserTags()
     let {id} = useParams<Params>();
     const tag =findTag(parseInt(id));
-    return (
+        return (
             <Layout>
                 <Container>
                     <Header>
                         <Icon name='left'/>
                         <span>编辑标签</span>
                     </Header>
-                    <Section>
-                        <Input label='标签名' placeholder={'请填写标签名'} defaultValue={tag.name} onChange={(e)=>{
-                            updateTag(tag.id,{name:e.target.value})
+                    {tag?  <Section>
+                        <Input label='标签名' placeholder={'请填写标签名'} defaultValue={tag.name} onChange={(e) => {
+                            updateTag(tag.id, {name: e.target.value})
                         }}/>
                         <Space/>
                         <Space/>
-                        <Button>删除标签</Button>
-                    </Section>
+                        <Button onClick={() =>deleteTag(tag.id)}>删除标签</Button>
+                    </Section>:<div>标签不存在</div>}
                 </Container>
                 <NavBar/>
             </Layout>
-    )
-}
+        )
+    }
 export default EditorTags
