@@ -1,6 +1,6 @@
 import React from "react";
 import UserTags from "../../UseTags";
-import {useParams} from 'react-router-dom'
+import {useParams,useHistory} from 'react-router-dom'
 import Layout from "../../components/Layout/Layout";
 import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
@@ -40,13 +40,17 @@ padding: 8px;
 `
 const EditorTags:React.FC = ()=>{
     const {findTag,updateTag,deleteTag}= UserTags()
+    const history = useHistory()
+    const onClickBack = ()=>{
+        history.goBack()
+    }
     let {id} = useParams<Params>();
     const tag =findTag(parseInt(id));
         return (
             <Layout>
                 <Container>
                     <Header>
-                        <Icon name='left'/>
+                        <Icon name='left' className='frank' onClick={onClickBack}/>
                         <span>编辑标签</span>
                     </Header>
                     {tag?  <Section>
