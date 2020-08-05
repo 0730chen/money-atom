@@ -34,7 +34,7 @@ justify-content: center;
 align-items: center;
 `
 const Tag = ()=> {
-    const {tags,setTags} = UserTags()
+    const {tags,setTags,onAddTag} = UserTags()
     console.log(setTags);
     return(
         <Layout>
@@ -52,7 +52,7 @@ const Tag = ()=> {
                 <Center>
                     <Space/>
                     <Space/>
-                    <Button>新增标签</Button>
+                    <Button onClick={onAddTag}>新增标签</Button>
                 </Center>
             </Container>
             <NavBar/>
