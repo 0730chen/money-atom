@@ -1,21 +1,27 @@
 import {useState, useEffect} from "react";
 import {createId} from "./lib/createId";
+import {useUpdate} from "./hooks/useUpdate";
 
-// const defaultTags = [
-//     {id:createId(),name:'衣服'},
-//     {id:createId(),name:'食物'},
-//     {id:createId(),name:'住宿'},
-//     {id:createId(),name:'出行'},]
+const defaultTags = [
+    {id:createId(),name:'衣服'},
+    {id:createId(),name:'食物'},
+    {id:createId(),name:'住宿'},
+    {id:createId(),name:'出行'},]
 
 const UserTags = ()=>{
     const [tags,setTags] = useState<{id:number;name:string}[]>(
         []
     )
+    //第一次会将空数组也渲染
+    //使用一个标记
     useEffect(()=>{
-       let tags = JSON.parse(window.localStorage.getItem('tags')||'[]')
-        setTags(tags)
+        let localTags = JSON.parse(window.localStorage.getItem('tags')||'[]')
+        if(localTags.length===0){
+            localTags = defaultTags
+        }
+        setTags(localTags)
     },[])
-    useEffect(()=>{
+    useUpdate(()=>{
         window.localStorage.setItem('tags',JSON.stringify(tags))
     },[tags])
     const onAddTag  = ()=>{
