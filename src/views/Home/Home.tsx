@@ -6,6 +6,7 @@ import {TagsSections} from "./components/TagsSections";
 import {NotesSection} from "./components/NotesSection";
 import {TypeSection} from "./components/TypeSection";
 import {NumberPad} from "./components/NumberPad";
+import {useRecord} from "../../hooks/useRecord";
 const Container = styled.div`
   flex: 1;
   background:#FFCC99;
@@ -22,8 +23,23 @@ const Home = ()=> {
         amount:0
     })
     type Selected = typeof obj
+    const {records,addRecord} = useRecord()
     const onChange = (value:Partial<Selected>)=>{
         setObj({...obj,...value})
+
+    }
+    const submit = ()=>{
+        addRecord(obj)
+        console.log(records);
+        if(addRecord(obj)) {
+            alert('提交成功')
+            setObj({
+                tags: [] as number[],
+                note: '',
+                category: '-' as Category,
+                amount: 0
+            })
+        }
 
     }
     return (
@@ -33,7 +49,7 @@ const Home = ()=> {
                 <NotesSection value={obj.note} onChange={(note)=>onChange({note})}/>
                 <TypeSection value={obj.category} onChange={(category)=>onChange({category})
                }/>
-                <NumberPad value={obj.amount}  onOk={()=>{}} onChange={(amount)=>{onChange({amount})
+                <NumberPad value={obj.amount}  onOk={submit} onChange={(amount)=>{onChange({amount})
                 }}/>
             </Container>
             <NavBar/>

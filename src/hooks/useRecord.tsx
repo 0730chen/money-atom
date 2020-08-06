@@ -1,0 +1,32 @@
+import {useEffect, useState} from "react";
+import {useUpdate} from "./useUpdate";
+
+type MoneyRecord = {
+    tags:number[]
+    note:string
+    category:'+'|'-'
+    amount:number
+}
+export const useRecord = ()=>{
+    const [records,setRecord] = useState<MoneyRecord[]>(
+        [])
+    useEffect(()=>{
+        setRecord((JSON.parse(window.localStorage.getItem('record')||'[]s')))
+    },[])
+    const addRecord = (record: { note: string; amount: number; category: "-" | "+"; tags: number[] }) =>{
+        if(record.amount<=0){
+            alert('填写金额')
+            return false
+        }
+        if(record.tags.length ===0){
+            alert('请选择标签')
+            return false
+        }
+        setRecord([...records,record])
+        return true
+    }
+    useUpdate(()=>{
+        window.localStorage.setItem('records',JSON.stringify(records))
+    },[records])
+    return {records,setRecord,addRecord}
+}
