@@ -13,7 +13,7 @@ export const useRecord = ()=>{
     useEffect(()=>{
         setRecord((JSON.parse(window.localStorage.getItem('record')||'[]')))
     },[])
-    const addRecord = (record: { note: string; amount: number; category: "-" | "+"; tags: number[] }) =>{
+    const addRecord = (record:MoneyRecord) =>{
         if(record.amount<=0){
             alert('填写金额')
             return false
@@ -28,5 +28,5 @@ export const useRecord = ()=>{
     useUpdate(()=>{
         window.localStorage.setItem('records',JSON.stringify(records))
     },[records])
-    return {records,setRecord,addRecord}
+    return {records,addRecord}
 }

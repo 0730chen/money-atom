@@ -23,14 +23,14 @@ const Home = ()=> {
         amount:0
     })
     type Selected = typeof obj
-    const {records,addRecord} = useRecord()
+    const {addRecord} = useRecord()
     const onChange = (value:Partial<Selected>)=>{
         setObj({...obj,...value})
 
     }
     const submit = ()=>{
         addRecord(obj)
-        console.log(records);
+
         if(addRecord(obj)) {
             alert('提交成功')
             setObj({
