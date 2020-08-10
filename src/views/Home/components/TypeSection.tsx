@@ -4,7 +4,7 @@ import React, {useState} from "react";
 const Wrapper = styled.section`
   display: flex;
   font-size: 24px;
-  background: #c4c4c4;
+  //background: #c4c4c4;
   >button{
   width: 50%;
   border:none;
