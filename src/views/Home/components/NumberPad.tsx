@@ -1,27 +1,29 @@
 
-import React from "react";
+import React, {useState} from "react";
 import Wrapper from "./NumberSection/Wrapper";
 import SetOutPut from "./NumberSection/SetOutPut";
 
 type Props = {
     value:number,
     onChange:(value:number)=>void,
-    onOk?:(value:Object)=>void
+    onOk?:()=>void
 }
 const NumberPad:React.FC<Props> = (props:Props)=>{
-    const output = props.value.toString()
+    // const output = props.value.toString()
+    const [output,setOutput] = useState(props.value.toString())
     const _setOutput  = (output:string)=>{
-        let value
+        let newOutput:string
         if(output.length>16){
-            value  = parseFloat(output.slice(0,16))
+            newOutput  = output.slice(0,16)
         }else if(output.length===0){
-            value = 0
+            newOutput = '0'
         }else {
             //TODO输入小数点不会同步
-            value = parseFloat(output)
-            console.log(value)
+            newOutput =output
+            console.log(newOutput)
         }
-        props.onChange(value)
+        setOutput(newOutput)
+        props.onChange(parseFloat(newOutput))
     }
     const onClickNumber = (e:React.MouseEvent)=>{
 
@@ -31,6 +33,9 @@ const NumberPad:React.FC<Props> = (props:Props)=>{
         }
         if(text==='ok'){
             //保存所有数据
+            if(props.onOk){
+                props.onOk()
+            }
             return;
         }
         if('0123456789.'.split(',').concat('删除','清空').indexOf(text)){

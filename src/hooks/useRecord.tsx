@@ -11,7 +11,7 @@ export const useRecord = ()=>{
     const [records,setRecord] = useState<MoneyRecord[]>(
         [])
     useEffect(()=>{
-        setRecord((JSON.parse(window.localStorage.getItem('record')||'[]s')))
+        setRecord((JSON.parse(window.localStorage.getItem('record')||'[]')))
     },[])
     const addRecord = (record: { note: string; amount: number; category: "-" | "+"; tags: number[] }) =>{
         if(record.amount<=0){
