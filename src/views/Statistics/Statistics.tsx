@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 import {TypeSection} from "../Home/components/TypeSection";
 import {useRecord} from "../../hooks/useRecord";
+import UserTags from "../../UseTags";
 const Container = styled.div`
 flex: 1;
 
@@ -14,6 +15,8 @@ const Statistics =()=> {
         '+':'收入'
     }
     const {records} = useRecord()
+    const {getName} = UserTags()
+    console.log(records);
     type Keys = keyof typeof categoryMap
     const [category,setCategory] =  useState<Keys>('-')
     return (<Layout>
@@ -21,7 +24,15 @@ const Statistics =()=> {
             <TypeSection value={category} onChange={value=>setCategory(value)
             }/>
             <div>
-                {JSON.stringify(records)}
+                {records.map(r=>{
+                    return  (<div key={r.amount}>
+                        {r.tags.map(e=>{
+                            return (<span key={e}>{getName(e)}</span>)
+                        })}
+                        <hr/>
+                        {r.amount}
+                    </div>)
+                })}
             </div>
         </Container>
         <NavBar/>

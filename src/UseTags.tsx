@@ -51,8 +51,12 @@ const UserTags = ()=>{
     const deleteTag=(id:number)=>{
         setTags(tags.filter(tag=>tag.id !==id))
     }
+    const getName = (id:number)=>{
+        const tag = tags.filter(t=>t.id===id)[0]
+        return tag ? tag.name:''
+    }
     return {
-        tags,setTags,findTag,updateTag,findTagIndex,deleteTag,onAddTag
+        tags,setTags,findTag,updateTag,findTagIndex,deleteTag,onAddTag,getName
     }
 
 }
