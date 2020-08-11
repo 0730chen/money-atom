@@ -6,8 +6,20 @@ import {TypeSection} from "../Home/components/TypeSection";
 import {useRecord} from "../../hooks/useRecord";
 import UserTags from "../../UseTags";
 const Container = styled.div`
+background: #ffd6a2;
 flex: 1;
-
+`
+const Item = styled.div`
+ display: flex;
+ justify-content: space-between;
+ background: white;
+ font-size: 18px;
+ line-height: 20px;
+ padding: 10px 16px;
+  >.note{
+  margin-right: auto;
+  margin-left: 16px;
+  }
 `
 const Statistics =()=> {
     const categoryMap = {
@@ -25,13 +37,12 @@ const Statistics =()=> {
             }/>
             <div>
                 {records.map(r=>{
-                    return  (<div key={r.amount}>
+                    return  (<Item key={r.amount}>
                         {r.tags.map(e=>{
-                            return (<span key={e}>{getName(e)}</span>)
+                            return (<span className="note" key={e}>{getName(e)}</span>)
                         })}
-                        <hr/>
-                        {r.amount}
-                    </div>)
+                        <div className="amount">￥{r.amount}</div>
+                    </Item>)
                 })}
             </div>
         </Container>
