@@ -66,18 +66,9 @@ const Login =()=>{
             name,
             password
         }
-        console.log(form)
-        axios.get('api').then(res=>{
-            console.log(res)
-        })
-        axios.get('api/login').then(res=>{
+        axios.post('api/user/createUser',qs.stringify(form)).then(res=>{
             console.log(res);
-            console.log(history)
-        }).catch(error=>{
-            console.log(error)
-        })
-        axios.post('api/login',qs.stringify(form)).then(res=>{
-            console.log(res);
+            window.localStorage.setItem('id',res.data._id)
         })
     }
     const [name,setName] = useState('')
@@ -89,11 +80,10 @@ const Login =()=>{
                 <Input>
                     <Icon name='account'/>
                     <input placeholder='请输入账号' type='text' value={name} onChange={e=>{setName(e.target.value)}}/>
-                    {/*<input type="text" placeholder="在这里输入备注" value={Notes} onChange={e=>{setNotes(e.target.value)}}/>*/}
                 </Input>
                 <Input>
                     <Icon name='password'/>
-                    <input placeholder='请输入密码' type='text' value={password} onChange={e=>{setPassword(e.target.value)}}/>
+                    <input placeholder='请输入密码' type='password' value={password} onChange={e=>{setPassword(e.target.value)}}/>
                 </Input>
                 <Button onClick={onLogin}>登陆</Button>
             </Form>
