@@ -31,12 +31,13 @@ const Statistics =()=> {
     console.log(records);
     type Keys = keyof typeof categoryMap
     const [category,setCategory] =  useState<Keys>('-')
+    const displayRecord = records.filter(r=>r.category===category)
     return (<Layout>
         <Container>
             <TypeSection value={category} onChange={value=>setCategory(value)
             }/>
             <div>
-                {records.map(r=>{
+                {displayRecord.map(r=>{
                     return  (<Item key={r.amount}>
                         {r.tags.map(e=>{
                             return (<span className="note" key={e}>{getName(e)}</span>)
