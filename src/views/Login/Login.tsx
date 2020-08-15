@@ -3,6 +3,10 @@ import React, { useState} from "react";
 import Icon from "../../components/Icon/Icon";
 import { useHistory } from "react-router-dom";
 import axios from 'axios'
+
+import { Button, WhiteSpace} from 'antd-mobile';
+
+console.log(Button);
 import  qs from 'qs'
 const Container = styled.div`
 display: flex;
@@ -35,16 +39,16 @@ font-size: 18px;
 font-weight: 800;
 color: #ff6600;
 `
-const Button  =styled.button`
-font-size: 18px;
-border:none;
-padding:8px 12px;
-border-radius: 4px;
-width: 50%;
-background: #ff6600;
-text-align: center;
-color: white;
-`
+// const Button  =styled.button`
+// font-size: 18px;
+// border:none;
+// padding:8px 12px;
+// border-radius: 4px;
+// width: 50%;
+// background: #ff6600;
+// text-align: center;
+// color: white;
+// `
 const Form = styled.div`
 width: 100%;
 display: flex;
@@ -83,7 +87,9 @@ const Login =()=>{
                     <Icon name='password'/>
                     <input placeholder='请输入密码' type='password' value={password} onChange={e=>{setPassword(e.target.value)}}/>
                 </Input>
-                <Button onClick={onLogin}>登陆</Button>
+                {/*<Button onClick={onLogin}>登陆</Button>*/}
+                <Button onClick={onLogin}>default</Button><WhiteSpace />
+
             </Form>
         </Container>
     )
