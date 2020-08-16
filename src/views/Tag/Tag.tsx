@@ -5,8 +5,14 @@ import styled from "styled-components";
 import UserTags from "../../UseTags";
 import Icon from "../../components/Icon/Icon";
 import {Link} from "react-router-dom";
-import Button from "../../components/Button/Button";
+import Button from '@material-ui/core/Button';
 import Space from "../../common/style/Space";
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 const Container = styled.div`
   flex: 1;
   background:#FFCC99;
@@ -34,8 +40,8 @@ justify-content: center;
 align-items: center;
 `
 const Tag = ()=> {
-    const {tags,setTags,onAddTag} = UserTags()
-    console.log(setTags);
+    const {tags,setTags,onAddTag,open,dialogOpen,dialogClose} = UserTags()
+
     return(
         <Layout>
             <Container>
@@ -52,10 +58,34 @@ const Tag = ()=> {
                 <Center>
                     <Space/>
                     <Space/>
-                    <Button onClick={onAddTag}>新增标签</Button>
+                    <Button onClick={dialogOpen} variant="contained" color="primary">新增标签</Button>
                 </Center>
             </Container>
             <NavBar/>
+            <Dialog open={open} onClose={dialogClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">添加一个标签页</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        标签内容
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="标签名"
+                        type="email"
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={dialogClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={dialogClose} color="primary">
+                        Subscribe
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Layout>
     )
 }

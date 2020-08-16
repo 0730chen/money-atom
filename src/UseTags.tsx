@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {createId} from "./lib/createId";
 import {useUpdate} from "./hooks/useUpdate";
 
@@ -12,6 +12,17 @@ const UserTags = ()=>{
     const [tags,setTags] = useState<{id:number;name:string}[]>(
         []
     )
+    const [open, setOpen] =useState(false);
+
+    //表单的打开和关闭
+
+    const dialogOpen = () => {
+        setOpen(true);
+    };
+
+    const dialogClose = () => {
+        setOpen(false);
+    };
     //第一次会将空数组也渲染
     //使用一个标记
     useEffect(()=>{
@@ -25,6 +36,7 @@ const UserTags = ()=>{
         window.localStorage.setItem('tags',JSON.stringify(tags))
     },[tags])
     const onAddTag  = ()=>{
+
         const tagName = window.prompt('新增标签名')
         if(tagName !==null && tagName!==''){
 
@@ -56,7 +68,7 @@ const UserTags = ()=>{
         return tag ? tag.name:''
     }
     return {
-        tags,setTags,findTag,updateTag,findTagIndex,deleteTag,onAddTag,getName
+        tags,setTags,findTag,updateTag,findTagIndex,deleteTag,onAddTag,getName,open,dialogClose,dialogOpen
     }
 
 }
