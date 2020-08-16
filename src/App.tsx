@@ -8,7 +8,6 @@ import Statistics from "./views/Statistics/Statistics";
 import NotFound from "./views/404/NotFound";
 import Login from "./views/Login/Login";
 import EditorTags from "./views/Tag/EditorTag";
-import 'antd-mobile/dist/antd-mobile.css';
 const Container = styled.div`
 height: 100%;
 width: 100%;
