@@ -40,7 +40,9 @@ justify-content: center;
 align-items: center;
 `
 const Tag = ()=> {
-    const {tags,setTags,onAddTag,open,dialogOpen,dialogClose} = UserTags()
+    const {tags,open,dialogOpen,dialogClose} = UserTags()
+    const [fullWidth, setFullWidth] = React.useState(true);
+    const [maxWidth, setMaxWidth] = React.useState('sm');
 
     return(
         <Layout>
@@ -62,12 +64,10 @@ const Tag = ()=> {
                 </Center>
             </Container>
             <NavBar/>
-            <Dialog open={open} onClose={dialogClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">添加一个标签页</DialogTitle>
+            <Dialog open={open} onClose={dialogClose} aria-labelledby="form-dialog-title" fullWidth={fullWidth}
+                    maxWidth='xs'>
+                <DialogTitle id="form-dialog-title">添加一个标签</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        标签内容
-                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -79,10 +79,10 @@ const Tag = ()=> {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={dialogClose} color="primary">
-                        Cancel
+                        取 消
                     </Button>
                     <Button onClick={dialogClose} color="primary">
-                        Subscribe
+                        确 定
                     </Button>
                 </DialogActions>
             </Dialog>

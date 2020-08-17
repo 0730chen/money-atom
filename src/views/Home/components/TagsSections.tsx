@@ -1,6 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import UserTags from "UseTags";
+import Dialog from "@material-ui/core/Dialog/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField/TextField";
+import DialogActions from "@material-ui/core/DialogActions/DialogActions";
+import Button from "@material-ui/core/Button";
+import Layout from "../../../components/Layout/Layout";
 
 const Wrapper = styled.section`
   background: #ffffff;
@@ -44,7 +52,7 @@ type Pros =  {
 }
 
 const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
-    let{tags,onAddTag} = UserTags()
+    let{tags,onAddTag,open,dialogOpen,dialogClose} = UserTags()
     const selectedTagIds = props.selected
     const onToggleTag  = (tagId:number)=>{
         const index  =selectedTagIds.indexOf(tagId)
@@ -64,7 +72,29 @@ const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
                     return <li key={tag.id} onClick={()=>onToggleTag(tag.id)} className={getClass(tag.id)}>{tag.name}</li>
                 })}
             </ul>
-            <button onClick={onAddTag}>新增标签</button>
+            <button onClick={dialogOpen}>新增标签</button>
+            <Dialog open={open} onClose={dialogClose} aria-labelledby="form-dialog-title" fullWidth={true}
+                    maxWidth='xs'>
+                <DialogTitle id="form-dialog-title">添加一个标签</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="标签名"
+                        type="email"
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={dialogClose} color="primary">
+                        取 消
+                    </Button>
+                    <Button onClick={dialogClose} color="primary">
+                        确 定
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Wrapper>
     )
 }
