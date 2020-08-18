@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent, useState} from "react";
 import Layout from "../../components/Layout/Layout";
 import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
@@ -42,7 +42,12 @@ align-items: center;
 const Tag = ()=> {
     const {tags,open,dialogOpen,dialogClose} = UserTags()
     const [fullWidth, setFullWidth] = React.useState(true);
+    const [tagName,setTagName] = React.useState('')
     const [maxWidth, setMaxWidth] = React.useState('sm');
+    const handleChange = (event:ChangeEvent<HTMLInputElement>):void => {
+        console.log(event.currentTarget.value);
+        setTagName(event.currentTarget.value);
+    };
 
     return(
         <Layout>
@@ -73,8 +78,10 @@ const Tag = ()=> {
                         margin="dense"
                         id="name"
                         label="标签名"
-                        type="email"
+                        type="text"
                         fullWidth
+                        value={tagName}
+                        onChange={handleChange}
                     />
                 </DialogContent>
                 <DialogActions>
