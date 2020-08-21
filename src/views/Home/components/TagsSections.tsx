@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import styled from "styled-components";
 import UserTags from "UseTags";
 import Dialog from "@material-ui/core/Dialog/Dialog";
@@ -54,6 +54,7 @@ type Pros =  {
 const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
     let{tags,onAddTag,open,dialogOpen,dialogClose} = UserTags()
     const selectedTagIds = props.selected
+    const [tagName,setTagName] = React.useState('')
     const onToggleTag  = (tagId:number)=>{
         const index  =selectedTagIds.indexOf(tagId)
         if(index>=0){
@@ -64,6 +65,12 @@ const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
     }
     const getClass = (tagsId:number) =>{
         return selectedTagIds.indexOf(tagsId) >=0?'selected':''
+    }
+    const handleChange = (event:ChangeEvent<HTMLInputElement>):void => {
+        setTagName(event.currentTarget.value);
+    };
+    const submitTag = ()=> {
+        dialogClose(tagName)
     }
     return(
         <Wrapper>
@@ -84,13 +91,15 @@ const TagsSections:React.FunctionComponent<Pros> = (props:Pros)=>{
                         label="标签名"
                         type="email"
                         fullWidth
+                        value={tagName}
+                        onChange={handleChange}
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={dialogClose} color="primary">
                         取 消
                     </Button>
-                    <Button onClick={dialogClose} color="primary">
+                    <Button onClick={()=>submitTag()} color="primary">
                         确 定
                     </Button>
                 </DialogActions>

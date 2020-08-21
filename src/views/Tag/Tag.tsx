@@ -44,10 +44,15 @@ const Tag = ()=> {
     const [fullWidth, setFullWidth] = React.useState(true);
     const [tagName,setTagName] = React.useState('')
     const [maxWidth, setMaxWidth] = React.useState('sm');
+
     const handleChange = (event:ChangeEvent<HTMLInputElement>):void => {
+        console.log(1111)
         console.log(event.currentTarget.value);
         setTagName(event.currentTarget.value);
     };
+    const submitTag = ()=> {
+        dialogClose(tagName)
+    }
 
     return(
         <Layout>
@@ -88,7 +93,7 @@ const Tag = ()=> {
                     <Button onClick={dialogClose} color="primary">
                         取 消
                     </Button>
-                    <Button onClick={dialogClose} color="primary">
+                    <Button onClick={()=>submitTag()} color="primary">
                         确 定
                     </Button>
                 </DialogActions>

@@ -26,7 +26,8 @@ const UserTags = ()=>{
         // }
     };
 
-    const dialogClose = () => {
+    const dialogClose = (value:any):void => {
+        setTags([...tags,{id:createId(),name:value}])
         setOpen(false);
     };
     //第一次会将空数组也渲染
