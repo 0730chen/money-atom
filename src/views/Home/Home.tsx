@@ -7,6 +7,7 @@ import {NotesSection} from "./components/NotesSection";
 import {TypeSection} from "./components/TypeSection";
 import {NumberPad} from "./components/NumberPad";
 import {useRecord} from "../../hooks/useRecord";
+import UserTags from "../../UseTags";
 const Container = styled.div`
   flex: 1;
   background:#FFCC99;
@@ -16,11 +17,13 @@ const Container = styled.div`
 
 type Category = '-'|'+'
 const Home = ()=> {
+    const {initTgas} = UserTags()
     const [obj, setObj] = useState({
         tags: [] as number[],
         note:'',
         category:'-' as Category,
-        amount:0
+        amount:0,
+        tagType:initTgas()
     })
     type Selected = typeof obj
     const {addRecord} = useRecord()
@@ -33,11 +36,13 @@ const Home = ()=> {
 
         if(addRecord(obj)) {
             alert('提交成功')
+            // @ts-ignore
             setObj({
                 tags: [] as number[],
                 note: '',
                 category: '-' as Category,
-                amount: 0
+                amount: 0,
+                tagType: initTgas()
             })
         }
 

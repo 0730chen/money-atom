@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import UserTags from "../../UseTags";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,17 +41,17 @@ type Form = {
 }
 const Login =()=>{
     const classes = useStyles();
-
+    const {initTgas} = UserTags()
     let history = useHistory()
     const onLogin = ()=>{
         let form = {
             name,
-            password
+            password,
+            typeType:initTgas()
         }
-        console.log(form)
         axios.post('api/user/createUser',qs.stringify(form)).then(res=>{
             console.log(res);
-            window.localStorage.setItem('id',res.data._id)
+            window.localStorage.setItem('name',res.data.name)
         }).catch(error=>{
         })
         history.push('/money')

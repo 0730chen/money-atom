@@ -2,11 +2,12 @@ import React, {useState, useEffect} from "react";
 import {createId} from "./lib/createId";
 import {useUpdate} from "./hooks/useUpdate";
 
-const defaultTags = [
+ const defaultTags = [
     {id:createId(),name:'衣服'},
     {id:createId(),name:'食物'},
     {id:createId(),name:'住宿'},
-    {id:createId(),name:'出行'},]
+    {id:createId(),name:'出行'},
+]
 
 const UserTags = ()=>{
     const [tags,setTags] = useState<{id:number;name:string}[]>(
@@ -15,7 +16,9 @@ const UserTags = ()=>{
     const [open, setOpen] =useState(false);
 
     //表单的打开和关闭
-
+    const initTgas = ()=>{
+        return defaultTags
+    }
     const dialogOpen = () => {
         setOpen(true);
         // if(tagName !==null && tagName!==''){
@@ -75,7 +78,7 @@ const UserTags = ()=>{
         return tag ? tag.name:''
     }
     return {
-        tags,setTags,findTag,updateTag,findTagIndex,deleteTag,onAddTag,getName,open,dialogClose,dialogOpen
+        tags,setTags,findTag,updateTag,findTagIndex,deleteTag,onAddTag,getName,open,dialogClose,dialogOpen,initTgas
     }
 
 }
