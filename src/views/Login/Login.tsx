@@ -43,19 +43,30 @@ const Login =()=>{
     const classes = useStyles();
     const {initTgas} = UserTags()
     let history = useHistory()
-    const onLogin = ()=>{
+    const onLogin = async ()=>{
         let form = {
             name,
             password,
             typeType:initTgas()
         }
-        axios.post('api/user/createUser',qs.stringify(form)).then(res=>{
-            console.log(res);
-            window.localStorage.setItem('name',res.data.name)
-        }).catch(error=>{
-        })
-        history.push('/money')
+        console.log(form);
+        // axios.post('api/user/createUser',qs.stringify(form)).then(res=>{
+        //     console.log(res);
+        // }).catch(error=>{
+        //     console.log(error);
+        // })
+        // try {
+        //     let result = await axios.post('api/user/createUser',{params:form})
+        //     console.log(result);
+        //     // window.localStorage.setItem('name',res.data.name)
+        //
+        //     // history.push('/money')
+        // }catch (e) {
+        //     console.log(e.message)
+        // }
+
     }
+
     const [name,setName] = useState('')
     const [password,setPassword] = useState('')
 

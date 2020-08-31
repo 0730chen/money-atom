@@ -23,7 +23,7 @@ function App() {
                       <Route path="/tag/:id" component={EditorTags} exact />
                       <Route path="/statistics" component={Statistics} exact />
                       <Route path='/login' component={Login} exact/>
-                      <Redirect exact from="/"  to="/login"/>
+                      <Redirect exact from="/"  to="/login" />
                       <Route  exact path="*"  component={NotFound}/>
                   </Switch>
           </Container>
