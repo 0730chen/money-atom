@@ -8,7 +8,6 @@ type Props = {
 } & React.SVGAttributes<SVGSVGElement>
 const Icon:React.FC<Props> =(props:Props)=>{
     const {name,children,className,...reset} = props
-    console.log(children);
     // @ts-ignore
     return (
         <svg className={css('icon',className)} {...reset}>

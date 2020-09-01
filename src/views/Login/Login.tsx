@@ -1,9 +1,8 @@
 
-import React, { useState} from "react"
+import React, {EventHandler, useState} from "react"
 import { useHistory } from "react-router-dom";
 import axios from 'axios'
 import  qs from 'qs'
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserTags from "../../UseTags";
+import {Snackbar} from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +34,35 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    },
 }));
 type Form = {
     name:string,
     password:string
 }
+
+
+
 const Login =()=>{
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
     const classes = useStyles();
     const {initTgas} = UserTags()
     let history = useHistory()
@@ -47,23 +70,17 @@ const Login =()=>{
         let form = {
             name,
             password,
-            typeType:initTgas()
+            tagType:initTgas()
         }
-        console.log(form);
-        // axios.post('api/user/createUser',qs.stringify(form)).then(res=>{
-        //     console.log(res);
-        // }).catch(error=>{
-        //     console.log(error);
-        // })
-        // try {
-        //     let result = await axios.post('api/user/createUser',{params:form})
-        //     console.log(result);
-        //     // window.localStorage.setItem('name',res.data.name)
-        //
-        //     // history.push('/money')
-        // }catch (e) {
-        //     console.log(e.message)
-        // }
+        try {
+            let result = await axios.post('api/user/createUser',qs.stringify(form))
+            console.log(result);
+            window.localStorage.setItem('name',result.data.name)
+            history.push('/money')
+            setOpen(true);
+        }catch (e) {
+            console.log(e.message)
+        }
 
     }
 
@@ -106,7 +123,6 @@ const Login =()=>{
                         value={password} onChange={e=>{setPassword(e.target.value)}}
                     />
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -117,6 +133,9 @@ const Login =()=>{
                     </Button>
                 </form>
             </div>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+               <text>成功</text>
+            </Snackbar>
         </Container>
     );
 

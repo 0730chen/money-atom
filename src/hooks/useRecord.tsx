@@ -27,7 +27,6 @@ export const useRecord = ()=>{
     }
 
     useUpdate(()=>{
-        console.log(records,'更新')
         window.localStorage.setItem('records',JSON.stringify(records))
     },[records])
     return {records,addRecord}

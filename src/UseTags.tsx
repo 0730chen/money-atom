@@ -21,12 +21,6 @@ const UserTags = ()=>{
     }
     const dialogOpen = () => {
         setOpen(true);
-        // if(tagName !==null && tagName!==''){
-        //
-        //     setTags([...tags,{id:createId(),name:tagName}])
-        // }else {
-        //     alert('标签名不能为空')
-        // }
     };
 
     const dialogClose = (value:any):void => {
