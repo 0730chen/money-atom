@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserTags from "../../UseTags";
-import {Snackbar} from "@material-ui/core";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,15 +59,19 @@ const Login =()=>{
             password,
             tagType:initTgas()
         }
-        try {
-            let result = await axios.post('api/user/createUser',qs.stringify(form))
-            if(result.data.status ===200){
-                window.localStorage.setItem('name',result.data[0].name)
-                history.push('/money')
-            }else {
-                alert(result.data.error)
+        if(form.name !=='' && form.password !=='') {
+            try {
+                let result = await axios.post('api/user/createUser', qs.stringify(form))
+                if (result.data.status === 200) {
+                    window.localStorage.setItem('name', result.data.data[0].name)
+                    history.push('/money')
+                } else {
+                    alert(result.data.error)
+                }
+            } catch (e) {
             }
-        }catch (e) {
+        }else {
+            alert('用户名或密码不能为空')
         }
 
     }

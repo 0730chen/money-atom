@@ -8,6 +8,8 @@ import {TypeSection} from "./components/TypeSection";
 import {NumberPad} from "./components/NumberPad";
 import {useRecord} from "../../hooks/useRecord";
 import UserTags from "../../UseTags";
+import axios from 'axios'
+import  qs from 'qs'
 const Container = styled.div`
   flex: 1;
   background:#FFCC99;
@@ -31,8 +33,18 @@ const Home = ()=> {
         setObj({...obj,...value})
 
     }
-    const submit = ()=>{
+    const submit = async ()=>{
         addRecord(obj)
+        try {
+            let name = window.localStorage.getItem('name')
+            let params = {
+                name,
+                record:obj
+            }
+            await axios.post('api/user/record',qs.stringify(params))
+        }catch (e) {
+            console.log(e.message);
+        }
 
         if(addRecord(obj)) {
             alert('提交成功')
@@ -42,7 +54,6 @@ const Home = ()=> {
                 note: '',
                 category: '-' as Category,
                 amount: 0,
-                tagType: initTgas()
             })
         }
 
