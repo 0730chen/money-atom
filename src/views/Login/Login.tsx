@@ -50,19 +50,6 @@ type Form = {
 
 const Login =()=>{
 
-    const [open, setOpen] = React.useState(false);
-
-    const handleClick = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
     const classes = useStyles();
     const {initTgas} = UserTags()
     let history = useHistory()
@@ -74,12 +61,13 @@ const Login =()=>{
         }
         try {
             let result = await axios.post('api/user/createUser',qs.stringify(form))
-            console.log(result);
-            window.localStorage.setItem('name',result.data.name)
-            history.push('/money')
-            setOpen(true);
+            if(result.data.status ===200){
+                window.localStorage.setItem('name',result.data[0].name)
+                history.push('/money')
+            }else {
+                alert(result.data.error)
+            }
         }catch (e) {
-            console.log(e.message)
         }
 
     }
@@ -133,9 +121,6 @@ const Login =()=>{
                     </Button>
                 </form>
             </div>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-               <text>成功</text>
-            </Snackbar>
         </Container>
     );
 
