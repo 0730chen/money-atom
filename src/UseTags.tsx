@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {createId} from "./lib/createId";
+import axios from 'axios'
 import {useUpdate} from "./hooks/useUpdate";
+import qs from "qs";
 
  const defaultTags = [
     {id:createId(),name:'衣服'},
@@ -23,9 +25,22 @@ const UserTags = ()=>{
         setOpen(true);
     };
 
-    const dialogClose = (value:any):void => {
+    const dialogClose = async (value:any):Promise<void> => {
         setTags([...tags,{id:createId(),name:value}])
-        setOpen(false);
+        let name = window.localStorage.getItem('name')
+        let params = {
+            name:name,
+            tags:[...tags,{id:createId(),name:value}]
+        }
+        try {
+            let res = await axios.put('/api/user/tags',qs.stringify(params))
+            console.log(res)
+            let tags = res.data.data.tags
+            localStorage.setItem('tags',JSON.stringify(tags))
+            setOpen(false);
+        }catch (e) {
+
+        }
     };
     //第一次会将空数组也渲染
     //使用一个标记

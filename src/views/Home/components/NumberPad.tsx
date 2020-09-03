@@ -20,7 +20,6 @@ const NumberPad:React.FC<Props> = (props:Props)=>{
         }else {
             //TODO输入小数点不会同步
             newOutput =output
-            console.log(newOutput)
         }
         setOutput(newOutput)
         props.onChange(parseFloat(newOutput))
