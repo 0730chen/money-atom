@@ -62,13 +62,17 @@ const Login =()=>{
         if(form.name !=='' && form.password !=='') {
             try {
                 let result = await axios.post('api/user/createUser', qs.stringify(form))
+                console.log(result);
                 if (result.data.status === 200) {
                     window.localStorage.setItem('name', result.data.data[0].name)
+                    let tags = JSON.stringify(result.data.data[0].tags)
+                    window.localStorage.setItem('tags',tags)
                     history.push('/money')
                 } else {
                     alert(result.data.error)
                 }
             } catch (e) {
+                console.log(e);
             }
         }else {
             alert('用户名或密码不能为空')
