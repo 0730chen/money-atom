@@ -112,7 +112,7 @@
     "eslint-plugin-react": "^7.20.0",
     "node-sass": "npm:dart-sass@1.25.0",
     "pre-commit": "^1.2.2",
-    "qs": "^6.9.4",
+    "qs": "^6.5.3",
     "svg-sprite-loader": "^5.0.0",
     "svgo-loader": "^2.2.1"
   },
